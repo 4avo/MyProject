@@ -1,21 +1,23 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { Button } from "$lib/components/ui/button";
     export let data;
     $: ({ user, supabase } = data);
     
-    async function logout() {
-        await supabase.auth.signOut();
-        goto("/", { invalidateAll: true})
+    function navigateToProfile() {
+    goto('/profile');
     }
 </script>
 
 {#if user}
 <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 relative">
     <!-- Profile Button in Top Right -->
-    <Button on:click={logout} class="absolute top-4 right-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full">
-        Profile
-    </Button>
+    <button 
+  on:click={navigateToProfile} 
+  class="absolute top-4 right-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full px-6 py-3 text-lg font-semibold shadow-lg transition duration-300 transform hover:scale-105"
+>
+  Profile
+</button>
+
 
     <!-- Logo Section -->
     <div class="mb-8 mt-16">
